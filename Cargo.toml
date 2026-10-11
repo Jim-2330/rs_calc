@@ -1,0 +1,11 @@
+[package]
+name = "rs_calc"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+
+[[bin]]
+name = "rs_calc"     # 编译后就是 mytool
+path = "src/main.rs"
