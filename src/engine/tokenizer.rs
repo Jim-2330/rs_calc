@@ -26,7 +26,7 @@ pub fn tokenize(s: &str) -> Result<Vec<Token>, TokenizeError> {
                 }
                 let text: String = chars[tmp..i].iter().collect();
                 let value: f64 = text.parse().map_err(|_| TokenizeError::UnexpectedChar {
-                    ch: chars[i],
+                    ch: chars.get(i).copied().unwrap_or('\0'),
                     pos: tmp,
                 })?;
                 tokens.push(Token {

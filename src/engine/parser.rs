@@ -29,7 +29,7 @@ impl Parser {
             pos: 0,
         }
     }
-    fn peek(&mut self) -> Token {
+    fn peek(&self) -> Token {
         self.tokens
             .get(self.pos)
             .cloned()
@@ -40,7 +40,7 @@ impl Parser {
         self.pos += 1;
         tok
     }
-    fn check(&mut self, kind: TokenKind) -> bool {
+    fn check(&self, kind: TokenKind) -> bool {
         self.peek().kind == kind
     }
     fn expect(&mut self, kind: TokenKind) -> Result<Token, ParseError> {
@@ -62,7 +62,7 @@ impl Parser {
             TokenKind::TIMES => Ok(Op::TIMES),
             TokenKind::DIVIDE => Ok(Op::DIVIDE),
             _ => Err(ParseError::NotAnOperator {
-                got: self.peek().kind,
+                got: tok,
                 pos: self.pos,
             }),
         }
@@ -105,12 +105,9 @@ impl Parser {
             }
         } else if self.check(TokenKind::LPAREN) {
             self.advance();
-            let e = self.parse_expr();
+            let e = self.parse_expr()?;
             self.expect(TokenKind::RPAREN)?;
-            match e {
-                Ok(expr) => Ok(expr),
-                Err(err) => Err(err),
-            }
+            Ok(e)
         } else if self.check(TokenKind::MINUS) {
             self.advance();
             let operand = self.parse_factor();
@@ -132,14 +129,9 @@ impl Parser {
 
 pub fn parse(tokens: Vec<Token>) -> Result<Expr, ParseError> {
     let mut p = Parser::new(tokens);
-    let expr = p.parse_expr();
-    match expr {
-        Ok(exp) => {
-            if p.peek().kind != TokenKind::EOF {
-                return Err(ParseError::ExpectedEof { pos: p.pos });
-            }
-            Ok(exp)
-        }
-        Err(err) => Err(err),
+    let expr = p.parse_expr()?;
+    if p.peek().kind != TokenKind::EOF {
+        return Err(ParseError::ExpectedEof { pos: p.pos });
     }
+    Ok(expr)
 }
