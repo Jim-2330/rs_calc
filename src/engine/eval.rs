@@ -2,10 +2,10 @@ use crate::engine::ast::{Expr, Op, UnaryOp};
 
 fn apply_op(op: Op, left: f64, right: f64) -> Result<f64, EvalErr> {
     match op {
-        Op::PLUS => Ok(left + right),
-        Op::MINUS => Ok(left - right),
-        Op::TIMES => Ok(left * right),
-        Op::DIVIDE => {
+        Op::Plus => Ok(left + right),
+        Op::Minus => Ok(left - right),
+        Op::Times => Ok(left * right),
+        Op::Divide => {
             if right == 0.0 {
                 Err(EvalErr::DivideByZero)
             } else {

@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Expr {
     Number(f64),
     Binary {
@@ -12,15 +12,15 @@ pub enum Expr {
     },
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Op {
-    PLUS,
-    MINUS,
-    TIMES,
-    DIVIDE,
+    Plus,
+    Minus,
+    Times,
+    Divide,
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum UnaryOp {
     NEG,
 }

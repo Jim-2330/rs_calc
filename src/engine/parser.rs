@@ -57,10 +57,10 @@ impl Parser {
     }
     fn kind_to_op(&mut self, tok: TokenKind) -> Result<Op, ParseError> {
         match tok {
-            TokenKind::PLUS => Ok(Op::PLUS),
-            TokenKind::MINUS => Ok(Op::MINUS),
-            TokenKind::TIMES => Ok(Op::TIMES),
-            TokenKind::DIVIDE => Ok(Op::DIVIDE),
+            TokenKind::PLUS => Ok(Op::Plus),
+            TokenKind::MINUS => Ok(Op::Minus),
+            TokenKind::TIMES => Ok(Op::Times),
+            TokenKind::DIVIDE => Ok(Op::Divide),
             _ => Err(ParseError::NotAnOperator {
                 got: tok,
                 pos: self.pos,
