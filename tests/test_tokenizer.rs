@@ -4,7 +4,7 @@ pub use rs_calc::engine::tokenizer::tokenize;
 #[test]
 fn test_tokenize() {
     assert_eq!(
-        tokenize("1 + 1").unwrap_or_default(),
+        tokenize("1 + 1").expect("tokenize error"),
         [
             Token {
                 kind: TokenKind::NUM,
