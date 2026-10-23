@@ -1,5 +1,5 @@
 # rs_calc
-> A small caculator made using rust
+> A small calculator made using rust
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Rust](https://github.com/Jim-2330/rs_calc/actions/workflows/rust.yml/badge.svg)](https://github.com/Jim-2330/rs_calc/actions/workflows/rust.yml)
@@ -9,7 +9,7 @@
 
 ## Features
 
-- **Parse arguements:** Parse expressions and options directly from the command line.
+- **Parse Arguments:** Parse expressions and options directly from the command line.
 - **BigDecimal:** High-precision calculation to solve classic floating-point issues like `0.1 + 0.2 != 0.3`.
 - **REPL & Analysis:** Supports multiple modes (`eval`, `tokens`, `ast`) for expression evaluation and inspection.
 
@@ -28,16 +28,16 @@ Before running this project please install rust that depandency
 
 ### First method
 1. go on the [release page](https://github.com/Jim-2330/rs_calc/releases)
-2. choose the correct OS and downlaod
+2. choose the correct OS and download
 3. unzip it
-4. if you are using macosyou need to 
+4. if you are using macosy ou need to 
 ``` bash
 cd ~/Downlaods
 xattr -d com.apple.quarantine rs_calc
 ```
 
 ### Second method
-If you want to use this method you need prerequirment
+If you want to use this method you need prerequirement
 ``` bash
 cargo install rs_calc
 ```
