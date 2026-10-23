@@ -30,6 +30,11 @@ Before running this project please install rust that depandency
 1. go on the [release page](https://github.com/Jim-2330/rs_calc/releases)
 2. choose the correct OS and downlaod
 3. unzip it
+4. if you are using macosyou need to 
+``` bash
+cd ~/Downlaods
+xattr -d com.apple.quarantine rs_calc
+```
 
 ### Second method
 If you want to use this method you need prerequirment
