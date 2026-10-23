@@ -1,12 +1,15 @@
-use crate::engine::ast::{Expr, Op, UnaryOp};
+use std::str::FromStr;
 
-fn apply_op(op: Op, left: f64, right: f64) -> Result<f64, EvalErr> {
+use crate::engine::ast::{Expr, Op, UnaryOp};
+use bigdecimal::BigDecimal;
+
+fn apply_op(op: Op, left: BigDecimal, right: BigDecimal) -> Result<BigDecimal, EvalErr> {
     match op {
         Op::Plus => Ok(left + right),
         Op::Minus => Ok(left - right),
         Op::Times => Ok(left * right),
         Op::Divide => {
-            if right == 0.0 {
+            if right == BigDecimal::from_str("0.0").unwrap() {
                 Err(EvalErr::DivideByZero)
             } else {
                 Ok(left / right)
@@ -20,13 +23,13 @@ pub enum EvalErr {
     DivideByZero,
 }
 
-fn apply_unary(op: UnaryOp, operand: f64) -> f64 {
+fn apply_unary(op: UnaryOp, operand: BigDecimal) -> BigDecimal {
     match op {
         UnaryOp::NEG => -operand,
     }
 }
 
-pub fn eval(expr: Expr) -> Result<f64, EvalErr> {
+pub fn eval(expr: Expr) -> Result<BigDecimal, EvalErr> {
     match expr {
         Expr::Number(v) => Ok(v),
         Expr::Binary { op, left, right } => {

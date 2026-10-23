@@ -1,5 +1,7 @@
 use crate::engine::ast::Token;
 use crate::engine::ast::TokenKind;
+use bigdecimal::BigDecimal;
+use std::str::FromStr;
 
 #[derive(Debug)]
 pub enum TokenizeError {
@@ -25,10 +27,11 @@ pub fn tokenize(s: &str) -> Result<Vec<Token>, TokenizeError> {
                     }
                 }
                 let text: String = chars[tmp..i].iter().collect();
-                let value: f64 = text.parse().map_err(|_| TokenizeError::UnexpectedChar {
-                    ch: chars.get(i).copied().unwrap_or('\0'),
-                    pos: tmp,
-                })?;
+                let value: BigDecimal =
+                    BigDecimal::from_str(&text).map_err(|_| TokenizeError::UnexpectedChar {
+                        ch: chars.get(i).copied().unwrap_or('\0'),
+                        pos: tmp,
+                    })?;
                 tokens.push(Token {
                     kind: TokenKind::NUM,
                     value: Some(value),

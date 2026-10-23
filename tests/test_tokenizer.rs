@@ -1,5 +1,7 @@
+use bigdecimal::BigDecimal;
 pub use rs_calc::engine::ast::{Token, TokenKind};
 pub use rs_calc::engine::tokenizer::tokenize;
+use std::str::FromStr;
 
 #[test]
 fn test_tokenize() {
@@ -8,7 +10,7 @@ fn test_tokenize() {
         [
             Token {
                 kind: TokenKind::NUM,
-                value: Some(1.0),
+                value: Some(BigDecimal::from_str("1").expect("constent value error")),
                 pos: 0,
             },
             Token {
@@ -18,7 +20,7 @@ fn test_tokenize() {
             },
             Token {
                 kind: TokenKind::NUM,
-                value: Some(1.0),
+                value: Some(BigDecimal::from_str("1").expect("constent value error")),
                 pos: 4,
             },
             Token {
@@ -33,7 +35,7 @@ fn test_tokenize() {
         [
             Token {
                 kind: TokenKind::NUM,
-                value: Some(3.0),
+                value: Some(BigDecimal::from_str("3").expect("constent value error")),
                 pos: 0,
             },
             Token {
@@ -43,7 +45,7 @@ fn test_tokenize() {
             },
             Token {
                 kind: TokenKind::NUM,
-                value: Some(4.0),
+                value: Some(BigDecimal::from_str("4").expect("constent value error")),
                 pos: 4,
             },
             Token {
@@ -58,7 +60,7 @@ fn test_tokenize() {
             },
             Token {
                 kind: TokenKind::NUM,
-                value: Some(1.0),
+                value: Some(BigDecimal::from_str("1").expect("constent value error")),
                 pos: 9
             },
             Token {
@@ -68,7 +70,7 @@ fn test_tokenize() {
             },
             Token {
                 kind: TokenKind::NUM,
-                value: Some(1.0),
+                value: Some(BigDecimal::from_str("1").expect("constent value error")),
                 pos: 13
             },
             Token {

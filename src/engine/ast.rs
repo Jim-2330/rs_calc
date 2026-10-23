@@ -1,6 +1,8 @@
+use bigdecimal::BigDecimal;
+
 #[derive(Debug, PartialEq)]
 pub enum Expr {
-    Number(f64),
+    Number(BigDecimal),
     Binary {
         op: Op,
         left: Box<Expr>,
@@ -40,6 +42,6 @@ pub enum TokenKind {
 #[derive(Clone, Debug, PartialEq)]
 pub struct Token {
     pub kind: TokenKind,
-    pub value: Option<f64>,
+    pub value: Option<BigDecimal>,
     pub pos: usize,
 }
