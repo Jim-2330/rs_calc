@@ -27,8 +27,12 @@ Before running this project please install rust that depandency
 ## Quick Start
 
 ### First method
+1. go on the [release page](https://github.com/Jim-2330/rs_calc/releases)
+2. choose the correct OS and downlaod
+3. unzip it
 
-### Second method 
+### Second method
+If you want to use this method you need prerequirment
 ``` bash
 cargo install rs_calc
 ```
