@@ -2,7 +2,7 @@
 > A small caculator made using rust
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
+[![CI](https://github.com/Jim-2330/rs_calc/actions/workflows/<rust.yml>/badge.svg)](https://github.com/Jim-2330/rs_calc/actions)
 
 ---
 
@@ -25,20 +25,11 @@ Before running this project please install rust that depandency
 
 ## Quick Start
 
-### 1. Clone project
-``` bash
-git clone https://github.com/Jim-2330/rs_calc.git
-cd rs_calc
-```
+### First method
 
-### 2. Add Depandencies
+### Second method 
 ``` bash
-cargo add bigdecimal
-```
-
-### 3. Install it
-``` bash
-cargo install --path . --force
+cargo install rs_calc
 ```
 
 ---
