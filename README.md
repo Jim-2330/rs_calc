@@ -53,8 +53,3 @@ welcome to pull request and give us issue！
 3. commit your own change
 4. push your own fork
 5. add a new pull request
-
----
-
-## license
-this project uses MIT license to open source
