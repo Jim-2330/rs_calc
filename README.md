@@ -2,7 +2,7 @@
 > A small caculator made using rust
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/Jim-2330/rs_calc/actions/workflows/<rust.yml>/badge.svg)](https://github.com/Jim-2330/rs_calc/actions)
+[![Rust](https://github.com/Jim-2330/rs_calc/actions/workflows/rust.yml/badge.svg)](https://github.com/Jim-2330/rs_calc/actions/workflows/rust.yml)
 [![GitHub Release](https://img.shields.io/github/v/release/Jim-2330/rs_calc?include_prereleases&style=flat-square)](https://github.com/Jim-2330/rs_calc/releases)
 
 ---
