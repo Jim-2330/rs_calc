@@ -8,5 +8,5 @@ clap = { version = "4", features = ["derive"] }
 bigdecimal = "0.4"
 
 [[bin]]
-name = "rs_calc"     # 编译后就是 mytool
+name = "rs_calc"
 path = "src/main.rs"
