@@ -77,6 +77,11 @@ fn test_tokenize() {
                 kind: TokenKind::RPAREN,
                 value: None,
                 pos: 14
+            },
+            Token {
+                kind: TokenKind::EOF,
+                value: None,
+                pos: 15
             }
         ]
     );

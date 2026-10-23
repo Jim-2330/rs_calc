@@ -15,6 +15,6 @@ fn test_eval() {
     assert_eq!(
         eval(parse(tokenize("2 * 3 + (20 - 30)").expect("tokenize error")).expect("parse error"))
             .expect("eval error"),
-        BigDecimal::from_str("-3.0").expect("constent value error")
+        BigDecimal::from_str("-4.0").expect("constent value error")
     )
 }
