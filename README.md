@@ -1,10 +1,6 @@
 # rs_calc
 > a small caculator made using rust
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
-
----
 
 ## features
 
