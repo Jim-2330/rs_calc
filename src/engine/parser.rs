@@ -61,6 +61,7 @@ impl Parser {
             TokenKind::MINUS => Ok(Op::Minus),
             TokenKind::TIMES => Ok(Op::Times),
             TokenKind::DIVIDE => Ok(Op::Divide),
+            TokenKind::POWER => Ok(Op::Power),
             _ => Err(ParseError::NotAnOperator {
                 got: tok,
                 pos: self.pos,
@@ -82,7 +83,7 @@ impl Parser {
         Ok(left)
     }
     fn parse_term(&mut self) -> Result<Expr, ParseError> {
-        let mut left: Expr = self.parse_factor()?;
+        let mut left: Expr = self.parse_power()?;
         while self.check(TokenKind::TIMES) || self.check(TokenKind::DIVIDE) {
             let tok = self.advance();
             let op = self.kind_to_op(tok.kind)?;
