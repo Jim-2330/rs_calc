@@ -43,9 +43,10 @@ fn high_precision_ln(x: &BigDecimal) -> Result<BigDecimal, EvalErr> {
 
     for _ in 0..30 {
         let exp_y = taylor_exp(&y, 50);
-        let numerator = x - &exp_y;
-        let denominator = &exp_y;
-        let delta = &numerator / denominator;
+        let scale = 30;
+        let numerator = (x - &exp_y).with_scale(scale);
+        let denominator = exp_y.with_scale(scale);
+        let delta = &numerator / &denominator;
         y = &y + &delta;
 
         if delta == BigDecimal::from(0) {
