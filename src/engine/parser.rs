@@ -86,6 +86,20 @@ impl Parser {
         while self.check(TokenKind::TIMES) || self.check(TokenKind::DIVIDE) {
             let tok = self.advance();
             let op = self.kind_to_op(tok.kind)?;
+            let right = self.parse_power()?;
+            left = Expr::Binary {
+                op,
+                left: Box::new(left),
+                right: Box::new(right),
+            };
+        }
+        Ok(left)
+    }
+    fn parse_power(&mut self) -> Result<Expr, ParseError> {
+        let mut left: Expr = self.parse_factor()?;
+        while self.check(TokenKind::POWER) {
+            let tok = self.advance();
+            let op = self.kind_to_op(tok.kind)?;
             let right = self.parse_factor()?;
             left = Expr::Binary {
                 op,

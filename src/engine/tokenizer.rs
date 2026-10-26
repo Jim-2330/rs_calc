@@ -71,6 +71,15 @@ pub fn tokenize(s: &str) -> Result<Vec<Token>, TokenizeError> {
                 i += 1;
             }
             '*' => {
+                if let Some('*') = chars.get(i + 1) {
+                    tokens.push(Token {
+                        kind: TokenKind::POWER,
+                        value: None,
+                        pos: i,
+                    });
+                    i += 2;
+                    continue;
+                }
                 tokens.push(Token {
                     kind: TokenKind::TIMES,
                     value: None,
@@ -81,6 +90,14 @@ pub fn tokenize(s: &str) -> Result<Vec<Token>, TokenizeError> {
             '/' => {
                 tokens.push(Token {
                     kind: TokenKind::DIVIDE,
+                    value: None,
+                    pos: i,
+                });
+                i += 1;
+            }
+            '^' => {
+                tokens.push(Token {
+                    kind: TokenKind::POWER,
                     value: None,
                     pos: i,
                 });
