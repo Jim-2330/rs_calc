@@ -2,6 +2,10 @@
 name = "rs_calc"
 version = "0.1.1"
 edition = "2024"
+authors = ["Jim Lin lin.jim3478@gmail.com"]
+description = "A small calculator made using Rust"
+license = "MIT"
+repository = "https://github.com/Jim-2330/rs_calc"
 
 [dependencies]
 clap = { version = "4", features = ["derive"] }
