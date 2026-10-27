@@ -15,7 +15,7 @@ fn apply_op(op: Op, left: BigDecimal, right: BigDecimal) -> Result<BigDecimal, E
                 Ok(left / right)
             }
         }
-        Op::Power => high_precision_pow(&right, &left),
+        Op::Power => high_precision_pow(&left, &right),
     }
 }
 
