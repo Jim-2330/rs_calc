@@ -101,7 +101,7 @@ impl Parser {
         while self.check(TokenKind::POWER) {
             let tok = self.advance();
             let op = self.kind_to_op(tok.kind)?;
-            let right = self.parse_factor()?;
+            let right = self.parse_power()?;
             left = Expr::Binary {
                 op,
                 left: Box::new(left),
