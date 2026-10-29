@@ -27,7 +27,7 @@ fn taylor_exp(r: &BigDecimal, max_iterations: usize) -> BigDecimal {
         term = &term * r / BigDecimal::from(k as i64);
         sum = &sum + &term;
 
-        if term == BigDecimal::from(0) {
+        if term == 0 {
             break;
         }
     }
@@ -49,7 +49,7 @@ fn high_precision_ln(x: &BigDecimal) -> Result<BigDecimal, EvalErr> {
         let delta = &numerator / &denominator;
         y = &y + &delta;
 
-        if delta == BigDecimal::from(0) {
+        if delta == 0 {
             break;
         }
     }
@@ -57,11 +57,10 @@ fn high_precision_ln(x: &BigDecimal) -> Result<BigDecimal, EvalErr> {
 }
 
 fn high_precision_pow(base: &BigDecimal, exponent: &BigDecimal) -> Result<BigDecimal, EvalErr> {
-    if let Some(exp_i64) = exponent.to_i64() {
-        if BigDecimal::from(exp_i64) == *exponent {
+    if let Some(exp_i64) = exponent.to_i64()
+        && BigDecimal::from(exp_i64) == *exponent {
             return Ok(base.powi(exp_i64));
         }
-    }
 
     let ln_a = high_precision_ln(base)?;
     let product = exponent * &ln_a;
