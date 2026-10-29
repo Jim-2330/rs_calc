@@ -20,6 +20,7 @@ pub enum Op {
     Minus,
     Times,
     Divide,
+    Power,
 }
 
 #[derive(Debug, PartialEq)]
@@ -36,6 +37,7 @@ pub enum TokenKind {
     MINUS,
     TIMES,
     DIVIDE,
+    POWER,
     EOF,
 }
 
