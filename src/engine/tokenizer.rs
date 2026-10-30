@@ -1,7 +1,6 @@
 use crate::engine::ast::Token;
 use crate::engine::ast::TokenKind;
 use bigdecimal::BigDecimal;
-use std::char;
 use std::str::FromStr;
 
 #[derive(Debug, PartialEq)]
