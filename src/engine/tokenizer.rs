@@ -1,11 +1,23 @@
 use crate::engine::ast::Token;
 use crate::engine::ast::TokenKind;
 use bigdecimal::BigDecimal;
+use std::char;
 use std::str::FromStr;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum TokenizeError {
     UnexpectedChar { ch: char, pos: usize },
+}
+
+impl TokenizeError {
+    pub fn format_friendly(&mut self) -> String {
+        let (pos, message) = match self {
+            TokenizeError::UnexpectedChar { ch, pos } => {
+                (*pos, format!("Unexpected charactor\"{}\"", ch))
+            }
+        };
+        format!("evaluate error at position {}\n {}", pos, message)
+    }
 }
 
 pub fn tokenize(s: &str) -> Result<Vec<Token>, TokenizeError> {
@@ -71,15 +83,6 @@ pub fn tokenize(s: &str) -> Result<Vec<Token>, TokenizeError> {
                 i += 1;
             }
             '*' => {
-                if let Some('*') = chars.get(i + 1) {
-                    tokens.push(Token {
-                        kind: TokenKind::POWER,
-                        value: None,
-                        pos: i,
-                    });
-                    i += 2;
-                    continue;
-                }
                 tokens.push(Token {
                     kind: TokenKind::TIMES,
                     value: None,
@@ -90,14 +93,6 @@ pub fn tokenize(s: &str) -> Result<Vec<Token>, TokenizeError> {
             '/' => {
                 tokens.push(Token {
                     kind: TokenKind::DIVIDE,
-                    value: None,
-                    pos: i,
-                });
-                i += 1;
-            }
-            '^' => {
-                tokens.push(Token {
-                    kind: TokenKind::POWER,
                     value: None,
                     pos: i,
                 });

@@ -76,6 +76,18 @@ pub enum EvalErr {
     PowerByNagative,
 }
 
+impl EvalErr {
+    pub fn format_friendly(&self) -> String {
+        match self {
+            EvalErr::DivideByZero => "divided by zero is not allowed".to_string(),
+            EvalErr::PowerByNagative => {
+                "you can only power by natral number unless you want i which we didn't code"
+                    .to_string()
+            }
+        }
+    }
+}
+
 fn apply_unary(op: UnaryOp, operand: BigDecimal) -> BigDecimal {
     match op {
         UnaryOp::NEG => -operand,

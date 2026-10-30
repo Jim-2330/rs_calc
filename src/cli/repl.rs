@@ -20,7 +20,7 @@ pub fn run_repl(arg: Mode) {
                 let tmp = run_once("1 + 1", arg.clone());
                 match tmp {
                     Ok(()) => continue,
-                    Err(e) => println!("Error: {:#?}", e),
+                    Err(e) => println!("Error: {}", e.format_friendly()),
                 }
             }
             ":h" => {
@@ -30,7 +30,7 @@ pub fn run_repl(arg: Mode) {
             }
             expr => {
                 if let Err(e) = run_once(expr, arg.clone()) {
-                    println!("Error: {:#?}", e);
+                    println!("Error: {}", e.format_friendly());
                 }
             }
         };

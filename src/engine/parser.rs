@@ -16,6 +16,29 @@ pub enum ParseError {
     },
 }
 
+impl ParseError {
+    pub fn format_friendly(&self) -> String {
+        let (pos, message) = match self {
+            ParseError::UnexpectedToken { got, pos, .. } => (
+                *pos,
+                format!(
+                    "There is an unexpected charactor: \"{}\"",
+                    got.format_friendly()
+                ),
+            ),
+            ParseError::ExpectedEof { pos } => (
+                *pos,
+                "Expected ending the expression, but there is remaining charactor".to_string(),
+            ),
+            ParseError::NotAnOperator { pos, .. } => {
+                (*pos, "This charactor canot use as an operator".to_string())
+            }
+        };
+
+        format!("evaluate error at position {}\n{}", pos, message)
+    }
+}
+
 #[derive(Clone, Debug)]
 struct Parser {
     tokens: Vec<Token>,

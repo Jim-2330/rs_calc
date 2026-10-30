@@ -16,26 +16,36 @@ pub enum Mode {
 #[warn(dead_code)]
 #[derive(Debug)]
 pub enum AppError {
-    Tokenize(TokenizeError),
-    Parse(ParseError),
-    Eval(EvalErr),
+    Tokenize(String),
+    Parse(String),
+    Eval(String),
 }
 
 impl From<ParseError> for AppError {
     fn from(e: ParseError) -> Self {
-        AppError::Parse(e)
+        AppError::Parse(e.format_friendly())
     }
 }
 
 impl From<EvalErr> for AppError {
     fn from(e: EvalErr) -> Self {
-        AppError::Eval(e)
+        AppError::Eval(e.format_friendly())
     }
 }
 
 impl From<TokenizeError> for AppError {
-    fn from(e: TokenizeError) -> Self {
-        AppError::Tokenize(e)
+    fn from(mut e: TokenizeError) -> Self {
+        AppError::Tokenize(e.format_friendly())
+    }
+}
+
+impl AppError {
+    fn format_friendly(&self) -> &String {
+        match self {
+            AppError::Tokenize(msg) => msg,
+            AppError::Parse(msg) => msg,
+            AppError::Eval(msg) => msg,
+        }
     }
 }
 
