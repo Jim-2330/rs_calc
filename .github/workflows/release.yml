@@ -22,7 +22,7 @@ jobs:
           - os: macos-latest
             target: x86_64-apple-darwin
             name: rs_calc-macos-amd64.tar.gz
-          - os: macos-16
+          - os: macos-latest
             target: aarch64-apple-darwin
             name: rs_calc-macos-arm64.tar.gz
           - os: windows-latest
