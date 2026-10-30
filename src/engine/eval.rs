@@ -58,9 +58,10 @@ fn high_precision_ln(x: &BigDecimal) -> Result<BigDecimal, EvalErr> {
 
 fn high_precision_pow(base: &BigDecimal, exponent: &BigDecimal) -> Result<BigDecimal, EvalErr> {
     if let Some(exp_i64) = exponent.to_i64()
-        && BigDecimal::from(exp_i64) == *exponent {
-            return Ok(base.powi(exp_i64));
-        }
+        && BigDecimal::from(exp_i64) == *exponent
+    {
+        return Ok(base.powi(exp_i64));
+    }
 
     let ln_a = high_precision_ln(base)?;
     let product = exponent * &ln_a;
