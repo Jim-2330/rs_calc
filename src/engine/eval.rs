@@ -1,4 +1,3 @@
-use bigdecimal::Zero;
 use std::str::FromStr;
 
 use crate::engine::ast::{Expr, Op, UnaryOp};
