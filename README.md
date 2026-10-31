@@ -4,6 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Rust](https://github.com/Jim-2330/rs_calc/actions/workflows/rust.yml/badge.svg)](https://github.com/Jim-2330/rs_calc/actions/workflows/rust.yml)
 [![GitHub Release](https://img.shields.io/github/v/release/Jim-2330/rs_calc?include_releases&style=flat-square)](https://github.com/Jim-2330/rs_calc/releases)
+[![crates.io](https://img.shields.io/crates/v/rs_calc.svg)](https://crates.io/crates/rs_calc)
 
 ---
 
