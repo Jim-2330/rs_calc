@@ -1,3 +1,4 @@
+use bigdecimal::Zero;
 use std::str::FromStr;
 
 use crate::engine::ast::{Expr, Op, UnaryOp};
@@ -23,11 +24,19 @@ fn taylor_exp(r: &BigDecimal, max_iterations: usize) -> BigDecimal {
     let mut sum = BigDecimal::from(1);
     let mut term = BigDecimal::from(1);
 
+    // 设定精度，例如保留 50 位小数
+    let scale = 50;
+
     for k in 1..=max_iterations {
         term = &term * r / BigDecimal::from(k as i64);
-        sum = &sum + &term;
+        // 强制截断精度
+        term = term.with_scale(scale);
 
-        if term == 0 {
+        sum = &sum + &term;
+        sum = sum.with_scale(scale);
+
+        // term 趋近于 0 的判断也改成范围
+        if term.abs() < BigDecimal::from_str("1e-15").unwrap() {
             break;
         }
     }
@@ -49,7 +58,7 @@ fn high_precision_ln(x: &BigDecimal) -> Result<BigDecimal, EvalErr> {
         let delta = &numerator / &denominator;
         y = &y + &delta;
 
-        if delta == 0 {
+        if delta.abs() < BigDecimal::from_str("1e-15").unwrap() {
             break;
         }
     }
