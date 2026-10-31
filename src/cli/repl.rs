@@ -1,4 +1,4 @@
-use crate::cli::{Mode, run_once};
+use crate::cli::error::{Mode, run_once};
 use std::io;
 use std::io::Write;
 

@@ -1,5 +1,5 @@
+use crate::cli::error::{Mode, run_once};
 use crate::cli::repl::run_repl;
-use crate::cli::{Mode, run_once};
 use clap::Parser;
 
 #[derive(Parser, Debug)]
