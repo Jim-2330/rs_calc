@@ -1,6 +1,6 @@
 [package]
 name = "rs_calc"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 authors = ["Jim Lin lin.jim3478@gmail.com"]
 description = "A small calculator made using Rust"
