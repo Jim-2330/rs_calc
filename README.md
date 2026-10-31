@@ -32,7 +32,7 @@ Before running this project please install rust that depandency
 3. unzip it
 4. if you are using macosy ou need to 
 ``` bash
-cd ~/Downlaods
+cd ~/Downloads
 xattr -d com.apple.quarantine rs_calc
 ```
 
