@@ -17,8 +17,8 @@ pub enum ParseError {
 }
 
 impl ParseError {
-    pub fn format_friendly(&self) -> String {
-        let (pos, message) = match self {
+    pub fn describe(&self) -> (usize, String) {
+        match self {
             ParseError::UnexpectedToken { got, pos, .. } => (
                 *pos,
                 format!(
@@ -33,9 +33,7 @@ impl ParseError {
             ParseError::NotAnOperator { pos, .. } => {
                 (*pos, "This charactor canot use as an operator".to_string())
             }
-        };
-
-        format!("evaluate error at position {}\n{}", pos, message)
+        }
     }
 }
 
@@ -71,8 +69,8 @@ impl Parser {
         if tok.kind != kind {
             Err(ParseError::UnexpectedToken {
                 expected: kind,
-                got: tok,
-                pos: self.pos,
+                got: tok.clone(),
+                pos: tok.pos,
             })
         } else {
             Ok(self.advance())
@@ -85,10 +83,7 @@ impl Parser {
             TokenKind::TIMES => Ok(Op::Times),
             TokenKind::DIVIDE => Ok(Op::Divide),
             TokenKind::POWER => Ok(Op::Power),
-            _ => Err(ParseError::NotAnOperator {
-                got: tok,
-                pos: self.pos,
-            }),
+            _ => unreachable!("checked before advance"),
         }
     }
     fn parse_expr(&mut self) -> Result<Expr, ParseError> {
@@ -169,7 +164,8 @@ pub fn parse(tokens: Vec<Token>) -> Result<Expr, ParseError> {
     let mut p = Parser::new(tokens);
     let expr = p.parse_expr()?;
     if p.peek().kind != TokenKind::EOF {
-        return Err(ParseError::ExpectedEof { pos: p.pos });
+        let tok = p.peek();
+        return Err(ParseError::ExpectedEof { pos: tok.pos });
     }
     Ok(expr)
 }

@@ -52,7 +52,7 @@ impl TokenKind {
             TokenKind::TIMES => "times",
             TokenKind::DIVIDE => "divide",
             TokenKind::POWER => "power",
-            TokenKind::EOF => "",
+            TokenKind::EOF => "end of input",
         }
     }
 }

@@ -1,7 +1,6 @@
 use crate::engine::ast::Token;
 use crate::engine::ast::TokenKind;
 use bigdecimal::BigDecimal;
-use std::char;
 use std::str::FromStr;
 
 #[derive(Debug, PartialEq)]
@@ -10,13 +9,12 @@ pub enum TokenizeError {
 }
 
 impl TokenizeError {
-    pub fn format_friendly(&mut self) -> String {
-        let (pos, message) = match self {
+    pub fn describe(&self) -> (usize, String) {
+        match self {
             TokenizeError::UnexpectedChar { ch, pos } => {
                 (*pos, format!("Unexpected charactor\"{}\"", ch))
             }
-        };
-        format!("evaluate error at position {}\n {}", pos, message)
+        }
     }
 }
 

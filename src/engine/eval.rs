@@ -36,7 +36,7 @@ fn taylor_exp(r: &BigDecimal, max_iterations: usize) -> BigDecimal {
 
 fn high_precision_ln(x: &BigDecimal) -> Result<BigDecimal, EvalErr> {
     if x <= &BigDecimal::from(0) {
-        return Err(EvalErr::PowerByNagative);
+        return Err(EvalErr::LogOfNonPositive);
     }
 
     let mut y = BigDecimal::from(0);
@@ -73,15 +73,16 @@ fn high_precision_pow(base: &BigDecimal, exponent: &BigDecimal) -> Result<BigDec
 #[derive(Debug)]
 pub enum EvalErr {
     DivideByZero,
-    PowerByNagative,
+    LogOfNonPositive,
 }
 
 impl EvalErr {
     pub fn format_friendly(&self) -> String {
         match self {
             EvalErr::DivideByZero => "divided by zero is not allowed".to_string(),
-            EvalErr::PowerByNagative => {
-                "you can only power by natral number unless you want i which we didn't code"
+            EvalErr::LogOfNonPositive => {
+                "negative base with a fractional exponent is not supported \
+                 (it requires complex numbers)"
                     .to_string()
             }
         }

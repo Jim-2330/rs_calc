@@ -13,40 +13,58 @@ pub enum Mode {
     Ast,
 }
 
-#[warn(dead_code)]
 #[derive(Debug)]
 pub enum AppError {
-    Tokenize(String),
-    Parse(String),
-    Eval(String),
+    Tokenize(TokenizeError),
+    Parse(ParseError),
+    Eval(EvalErr),
 }
 
 impl From<ParseError> for AppError {
     fn from(e: ParseError) -> Self {
-        AppError::Parse(e.format_friendly())
+        AppError::Parse(e)
     }
 }
-
 impl From<EvalErr> for AppError {
     fn from(e: EvalErr) -> Self {
-        AppError::Eval(e.format_friendly())
+        AppError::Eval(e)
     }
 }
-
 impl From<TokenizeError> for AppError {
-    fn from(mut e: TokenizeError) -> Self {
-        AppError::Tokenize(e.format_friendly())
+    fn from(e: TokenizeError) -> Self {
+        AppError::Tokenize(e)
     }
 }
-
 impl AppError {
-    fn format_friendly(&self) -> &String {
+    /// 带源码上下文的友好渲染（给 REPL 用）
+    pub fn render(&self, source: &str) -> String {
         match self {
-            AppError::Tokenize(msg) => msg,
-            AppError::Parse(msg) => msg,
-            AppError::Eval(msg) => msg,
+            AppError::Tokenize(e) => render_tokenize(e, source),
+            AppError::Parse(e) => render_parse(e, source),
+            AppError::Eval(e) => e.format_friendly(),
         }
     }
+}
+
+fn render_parse(e: &ParseError, source: &str) -> String {
+    let (pos, msg) = e.describe();
+    format!(
+        "parse error at position {pos}: {msg}\n{}",
+        arrow(source, pos)
+    )
+}
+
+fn render_tokenize(e: &TokenizeError, source: &str) -> String {
+    let (pos, msg) = e.describe();
+    format!(
+        "tokenize error at position {pos}: {msg}\n{}",
+        arrow(source, pos)
+    )
+}
+
+fn arrow(source: &str, pos: usize) -> String {
+    let col = source.chars().take(pos).count();
+    format!("  {source}\n  {}^", " ".repeat(col))
 }
 
 pub fn run_once(expr: &str, mode: Mode) -> Result<(), AppError> {
