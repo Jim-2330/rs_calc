@@ -41,6 +41,7 @@ chmod +x rs_calc
 If you want to use this method you need prerequirement
 ``` bash
 cargo install rs_calc
+cargo build --release
 ```
 
 ---
