@@ -1,6 +1,6 @@
 [package]
 name = "rs_calc"
-version = "0.1.2"
+version = "0.1.4"
 edition = "2024"
 rust-version = "1.96.0"
 authors = ["Jim Lin lin.jim3478@gmail.com"]
