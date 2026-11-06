@@ -18,9 +18,9 @@
 
 ## Prerequisites
 
-Before running this project please install rust that depandency
+Before running this project please install rust toolchain
 
-- rustc >= 1.99.1
+- rustc >= 1.96.0
 
 
 ---
