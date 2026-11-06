@@ -87,6 +87,7 @@ pub fn tokenize(s: &str) -> Result<Vec<Token>, TokenizeError> {
                         value: None,
                         pos: i,
                     });
+                    continue;
                 };
 
                 tokens.push(Token {
