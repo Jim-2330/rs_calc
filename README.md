@@ -31,7 +31,7 @@ Before running this project please install rust toolchain
 1. go on the [release page](https://github.com/Jim-2330/rs_calc/releases)
 2. choose the correct OS and download
 3. unzip it
-4. if you are using macosy ou need to 
+4. if you are using macOS you need to 
 ``` bash
 cd ~/Downloads
 xattr -d com.apple.quarantine rs_calc
