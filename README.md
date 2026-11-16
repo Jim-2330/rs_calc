@@ -43,6 +43,7 @@ If you want to use this method you need prerequirement
 ``` bash
 cargo install rs_calc
 cargo build --release
+cargo install --path . --force
 ```
 
 ---
